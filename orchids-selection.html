@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petals n Pastry</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <nav id="navbar">
+    <div id="nav-logo">
+        <img src="/images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
+    </div>
+
+    <ul id="nav-links">
+        <li><a href="main_page.html">Home</a></li>
+        <li><a href="main_page.html#menu">Menu</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div id="nav-icons">
+        <div id="search-inline">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="SEARCH..." id="search-input" autocomplete="off">
+            <button id="close-search">✕</button>
+        </div>
+        <a href="#" id="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+        <a href="#"><i class="fa-solid fa-user"></i></a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+</nav>
+
+    <!--Selection-->
+    <div id="selection">
+        <div id="product-section">
+            <div id="product-img-col">
+                <div id="main-img">
+                    <img src="/images/orchids.png" alt="Roses (Per Stem)" id="main-product-img">
+                </div>
+                <div id="product-reco">
+                     <img src="/images/orchids.png" class="thumb active" onclick="setThumb(this)">
+
+                     <img src="/images/orchids2.png" class="thumb" onclick="setThumb(this)">
+
+                     <img src="/images/orchids3.png" class="thumb" onclick="setThumb(this)">
+
+                     <img src="/images/orchids4.png" class="thumb" onclick="setThumb(this)">
+                </div>
+
+                <p id="product-desc">
+                Exotic and graceful, our orchids feature delicate, architectural blooms and a long-lasting, sophisticated charm. A stunning choice as a high-end solo stem or an impressive, share-worthy gift box.
+            </p>
+            </div>
+            <div id="product-info-col">
+                <h2 id="product-title">Orchids (Per Stem)</h2>
+                <p id="price-display"> PHP 180.00 - PHP 720.00</p>
+
+                <!--add to cart and quantity-->
+                <div id="qty-row">
+                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                    
+                    <span id="qty-num">1</span>
+                
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                
+                    <button id="add-to-cart-btn" onclick="addToCart()">ADD TO CART</button>
+                </div>
+
+                <div id="variant-row">
+                    <button class="variant-btn active"onclick="setVariant (this, 180,'per stem')">per stem</button>
+
+                    <button class="variant-btn active"onclick="setVariant (this, 720,'bouquet (4 pc.)')">bouquet(4 pcs.)</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <!--You may also like portion-->
+    <div id="also-like">
+        <h2>You May Also Like...</h2>
+        <div id="also-grid">
+            <!--EDIT THE HREF LATER-->
+            <a href="rose-selection.html">
+                <div class="also-card">
+                    <div class="Roses-img"><img src="/images/roses.png" alt="Roses"></div>
+                    <div class="product-info">
+                        <div class="also-price">₱50.00</div>
+                        <div class="also-name">Roses</div>
+                    </div>
+                </div>
+            </a>
+            
+           <a href="sunflower-selection.html">
+                <div class="also-card">
+                    <div class="Sunflowers-img"><img src="/images/sunflowers.png" alt="Sunflowers"></div>
+                    <div class="product-info">
+                        <div class="also-price">₱100.00</div>
+                        <div class="also-name">Sunflowers</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="tulips-selection.html">
+                <div class="also-card">
+                    <div class="Tulips-img"><img src="/images/tulips.png" alt="Tulips"></div>
+                    <div class="product-info">
+                        <div class="also-price">₱70.00</div>
+                        <div class="also-name">Tulips</div>
+                    </div>
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+
+</div>
+
+    <!--Forms/Footer Portion-->
+    <div id="sub-footer">
+    <div id="categories">
+        <h2 class="lexend-font">Categories</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <span id="contact"></span>
+    <div id="contact-info">
+        <ul>
+        <h2 class="lexend-font">Contact</h2>
+        <li>Address: Cebu City, Philippines</li>
+        <li>Telephone: +63 111 143 6767</li>
+        <li>Email: petalsnpastries@cit.edu</li>
+        </ul>
+    </div>
+
+    <div id="contact-form">
+        <h2 class="lexend-font">Contact Form</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Phone no." required>
+            <div class="textarea-container">
+                <textarea placeholder="Message" rows="5"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+    <!--footer-->
+    <div id="footer">
+        <footer>
+        <h6>© 2026 Petals & Pastry. All rights reserved.</h6>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petals n Pastry</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <nav id="navbar">
+    <div id="nav-logo">
+        <img src="/images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
+    </div>
+
+    <ul id="nav-links">
+        <li><a href="main_page.html">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div id="nav-icons">
+        <div id="search-inline">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="SEARCH..." id="search-input" autocomplete="off">
+            <button id="close-search">✕</button>
+        </div>
+        <a href="#" id="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+</nav>
+
+    <!--Login-->
+    <div id="login">
+        <div id="login-hero">
+            <img src="/images/floral bg.png">
+        <div id="login-card">
+            <h2>Login</h2>
+
+            <div class="login-part">
+                <label>EMAIL</label>
+                <input type="email" id= "login-email" placeholder="">
+        </div>
+            <div class="password-part">
+                <label>PASSWORD</label>
+                <input type="password" id= "login-password" placeholder="">
+        </div>
+
+        <button id="sign-in">SIGN IN</button>
+
+        <div id="login-links">
+            <a href="#">Forgot your password?</a> 
+            <a href="create-account.html">Create Account</a>
+        </div>
+        </div>
+
+        <div id="brand-est">
+            <img src="/images/brand est.png">
+        </div>
+    </div>
+ 
+
+
+
+    <!--Forms/Footer Portion-->
+    <div id="sub-footer">
+    <div id="categories">
+        <h2 class="lexend-font">Categories</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <span id="contact"></span>
+    <div id="contact-info">
+        <ul>
+        <h2 class="lexend-font">Contact</h2>
+        <li>Address: Cebu City, Philippines</li>
+        <li>Telephone: +63 111 143 6767</li>
+        <li>Email: petalsnpastries@cit.edu</li>
+        </ul>
+    </div>
+
+    <div id="contact-form">
+        <h2 class="lexend-font">Contact Form</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Phone no." required>
+            <div class="textarea-container">
+                <textarea placeholder="Message" rows="5"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+    <!--footer-->
+    <div id="footer">
+        <footer>
+        <h6>© 2026 Petals & Pastry. All rights reserved.</h6>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
