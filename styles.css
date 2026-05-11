@@ -355,6 +355,23 @@ body {
     cursor: pointer;
     color: #3a3a3a;
 }
+
+.variant-btn {
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.variant-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.variant-btn.active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
 #variant-row {
     display: flex;
     gap: 10px;
@@ -782,7 +799,7 @@ body {
 }
 
 .modal-box h2 {
-    color: #E8989A;
+    color: #310D0D;
     text-align: center;
     margin-bottom: 24px;
 }
@@ -976,8 +993,12 @@ body {
     max-width: 800px;
     min-height: 500px;
     padding: 24px 32px;
+    overflow-x: auto; 
 }
 
+.cart-item {
+    min-width: 480px;
+}
 
 .notice{
     text-align:center;
