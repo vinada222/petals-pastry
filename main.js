@@ -332,3 +332,34 @@ function setVariant(btn, price, variant) {
         priceDisplay.textContent = 'PHP ' + price.toFixed(2);
     }
 }
+
+//menu achnor link 
+window.addEventListener('load', function() {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
+
+function setVariant(btn, price, variant) {
+
+    document.querySelectorAll('.variant-btn').forEach(function(b) {
+        b.classList.remove('active');
+    });
+    btn.classList.add('active');
+
+    currentPrice = price;
+    currentVariant = variant;
+
+    const priceDisplay = document.getElementById('price-display');
+    if (priceDisplay) {
+        priceDisplay.textContent = 'PHP ' + price.toFixed(2);
+    }
+
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    if (addToCartBtn) {
+        addToCartBtn.disabled = false;
+    }
+}

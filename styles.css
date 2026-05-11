@@ -966,13 +966,33 @@ body {
 }
 
 .orders {
-    border-top: 1px solid #000000;
+
+    display: grid; 
+    grid-template-columns: 70px 1fr 120px 100px 30px; 
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #3a3a3a;
+
+
+    
     color: #3a3a3a;
     margin: 0 20px 0 20px;
-    display: flex;
     justify-content: center;
-    gap: 100px;
+    gap: 1px;
     padding: 14px 0;
+}
+
+.orders p {
+    margin: 0;
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Optional: Align "Price" to the right to match the numbers */
+.orders p:last-of-type {
+    text-align: right;
 }
 
 .end-row {

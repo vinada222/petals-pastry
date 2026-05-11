@@ -56,7 +56,7 @@
 
                      <img src="/images/biscoff4.png" class="thumb" onclick="setThumb(this)">
                 </div>
-                
+
                 <p id="product-desc">
                 A buttery, crisp cookie packed with rich Biscoff spread and crunchy Biscoff crumbles. Perfect as a solo treat or share-worthy box gift.
             </p>
@@ -67,22 +67,18 @@
 
                 <!--add to cart and quantity-->
                 <div id="qty-row">
-                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                    
-                    <span id="qty-num">1</span>
-                
-                    <button class="qty-btn" onclick="changeQty(1)">+</button>
-                
-                    <button id="add-to-cart-btn" onclick="addToCart()">ADD TO CART</button>
-                </div>
+                <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                <span id="qty-num">1</span>
+                <button class="qty-btn" onclick="changeQty(1)">+</button>
+    
+            <button id="add-to-cart-btn" onclick="addToCart()" disabled style="cursor: not-allowed; opacity: 0.6;">ADD TO CART</button>
+        </div>
 
-                <div id="variant-row">
-                    <button class="variant-btn active"onclick="setVariant (this, 30,'solo (1 pc.)')">solo (1 pc.)</button>
-
-                    <button class="variant-btn active"onclick="setVariant (this, 160,'one mini box (6 pc.)')">one mini box (6 pcs.)</button>
-                </div>
-                
-            </div>
+    <div id="variant-row">
+        <button class="variant-btn" onclick="setVariant(this, 30, 'solo (1 pc.)')">solo (1 pc.)</button>
+        <button class="variant-btn" onclick="setVariant(this, 160, 'one mini box (6 pcs.)')">one mini box (6 pcs.)</button>
+    </div>
+        </div>
         </div>
 
     </div>
