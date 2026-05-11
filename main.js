@@ -139,6 +139,7 @@ function updateTotals(orderTotal) {
     }
 }
 
+//records all added products to the cart
 function renderCart() {
     const cartItemsContainer = document.getElementById('cart-items-container');
     if (!cartItemsContainer) return;
@@ -149,17 +150,16 @@ function renderCart() {
 
     cartItemsContainer.innerHTML = '';
 
-    // cart checker
+    if (ordersHeader) ordersHeader.style.display = 'grid';
+
     if (cart.length === 0) {
+
         if (notice) notice.style.display = 'block';
-        if (ordersHeader) ordersHeader.style.display = 'none';
         updateTotals(0);
         return;
     }
 
-    //headers
     if (notice) notice.style.display = 'none';
-    if (ordersHeader) ordersHeader.style.display = 'grid';
 
     let orderTotal = 0;
 
@@ -167,6 +167,7 @@ function renderCart() {
         const itemTotal = item.price * item.qty;
         orderTotal += itemTotal;
 
+        // horizontal line on details/menu info
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.style.cssText = `
@@ -196,6 +197,7 @@ function renderCart() {
 
     updateTotals(orderTotal);
 }
+
 
 //
 document.addEventListener('DOMContentLoaded', function() {
@@ -363,3 +365,4 @@ function setVariant(btn, price, variant) {
         addToCartBtn.disabled = false;
     }
 }
+
