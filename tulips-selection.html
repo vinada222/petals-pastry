@@ -62,29 +62,24 @@
             </p>
             </div>
             <div id="product-info-col">
-                <h2 id="product-title">Tulips (Per Stem)</h2>
+                <h2 id="product-title">Tulips (Stem & Bouquet)</h2>
                 <p id="price-display"> PHP 70.00 - PHP 280.00</p>
 
                 <!--add to cart and quantity-->
                 <div id="qty-row">
-                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                    
-                    <span id="qty-num">1</span>
-                
-                    <button class="qty-btn" onclick="changeQty(1)">+</button>
-                
-                    <button id="add-to-cart-btn" onclick="addToCart()">ADD TO CART</button>
-                </div>
-
-                <div id="variant-row">
-                    <button class="variant-btn active"onclick="setVariant (this, 70,'per stem')">per stem</button>
-
-                    <button class="variant-btn active"onclick="setVariant (this, 280,'bouquet (4 pc.)')">bouquet(4 pcs.)</button>
-                </div>
-                
-            </div>
+                <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                <span id="qty-num">1</span>
+                <button class="qty-btn" onclick="changeQty(1)">+</button>
+    
+            <button id="add-to-cart-btn" onclick="addToCart()" disabled style="cursor: not-allowed; opacity: 0.6;">ADD TO CART</button>
         </div>
 
+    <div id="variant-row">
+        <button class="variant-btn" onclick="setVariant(this, 50, 'per stem')">per stem (1 pc.)</button>
+        <button class="variant-btn" onclick="setVariant(this, 200, 'bouquet (6 pcs.)')">bouquet (4 stems)</button>
+    </div>
+        </div> 
+        </div>
     </div>
     
     <!--You may also like portion-->

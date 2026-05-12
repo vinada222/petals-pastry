@@ -194,9 +194,11 @@ body {
     flex: 1;
     min-width: 120px;
 }
+
 .pastry-list a {
     text-decoration: none;
 }
+
 
 /*flower list*/
 
@@ -570,14 +572,21 @@ body {
     border-color: #c97a8a;
 }
 
-
-
 /*about us page*/
+#about-us-section {
+    display: flex;
+    width: 100%;
+}
+
 #about-us {
-    background-color: #FFF0F0 !important;
+    background-color: #FFF0F0;
     padding: 60px 40px;
-    width: 50%;        
-    display: block;
+    width: 50%;
+}
+
+#about-us-right {
+    width: 50%;
+    background-color: #ECDDE2;
 }
 
 #about-us h3{/*founder of.....*/
