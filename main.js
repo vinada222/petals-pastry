@@ -363,3 +363,247 @@ function setVariant(btn, price, variant) {
     }
 }
 
+// USERS AND SESSIONS
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.textContent === 'Create Account') {
+        e.preventDefault();
+        window.location.href = 'register.html';
+    }
+    if (e.target && e.target.textContent.includes('log in here')) {
+        e.preventDefault();
+        window.location.href = 'login.html';
+    }
+});
+
+//Register or Create a new account feature
+const registerBtn = document.querySelector('#login #sign-in'); 
+
+if (registerBtn && document.getElementById('input-fname')) {
+    registerBtn.addEventListener('click', () => {
+        const fname = document.getElementById('input-fname').value;
+        const lname = document.getElementById('input-lname').value;
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('input-pw').value;
+        const confirmPw = document.getElementById('input-confirm-pw').value;
+
+        if (!fname || !email || !password) return alert("Please fill in all fields.");
+        if (password !== confirmPw) return alert("Passwords do not match!");
+
+        const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+        if (users.find(u => u.email === email)) return alert("Email already exists!");
+
+        users.push({ 
+            fname, 
+            lname, 
+            email, 
+            password, 
+            orderHistory: [] 
+        });
+        
+        localStorage.setItem('pnp-users', JSON.stringify(users));
+        alert("Account created! Redirecting to login...");
+        window.location.href = 'login.html';
+    });
+}
+
+// Login feature
+const loginBtn = document.querySelector('#login #sign-in'); 
+
+if (loginBtn && document.getElementById('login-email') && !document.getElementById('input-fname')) {
+    loginBtn.addEventListener('click', () => {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (user) {
+            localStorage.setItem('pnp-currentUser', JSON.stringify(user));
+            window.location.href = 'main_page.html';
+        } else {
+            alert("Invalid email or password!");
+        }
+    });
+}
+
+// check out monitor and record
+function processCheckout() {
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+    const cart = JSON.parse(localStorage.getItem('pnp-cart') || '[]');
+
+    if (!currentUser) {
+        alert("Please log in to checkout!");
+        window.location.href = 'login.html';
+        return;
+    }
+
+    if (cart.length === 0) return alert("Your cart is empty!");
+
+    const orderTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const newOrder = {
+        date: new Date().toLocaleDateString(),
+        orderNum: 'PNP-' + Math.floor(1000 + Math.random() * 9000),
+        total: orderTotal,
+        status: 'Processing'
+    };
+
+    // Update the local storage (database for now)
+    const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+    const userIndex = users.findIndex(u => u.email === currentUser.email);
+    
+    if (userIndex !== -1) {
+        users[userIndex].orderHistory.push(newOrder);
+        localStorage.setItem('pnp-users', JSON.stringify(users));
+        // Update the current session
+        localStorage.setItem('pnp-currentUser', JSON.stringify(users[userIndex]));
+    }
+
+    localStorage.removeItem('pnp-cart'); //clears data
+    alert("Purchase successful! Redirecting to profile...");
+    window.location.href = 'profile.html';
+}
+
+// profile and history display of user's information 
+function initProfile() {
+    const profileSection = document.getElementById('profile-info');
+    if (!profileSection) return;
+
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+    if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const title = document.getElementById('profile-title');
+    if (title) title.innerText = `${currentUser.fname.toUpperCase()}'S ACCOUNT`;
+    
+    const historySection = document.getElementById('order-history-section');
+    const notice = document.querySelector('.notice-1');
+
+    if (currentUser.orderHistory && currentUser.orderHistory.length > 0) {
+        if (notice) notice.style.display = 'none';
+        
+        currentUser.orderHistory.forEach(order => {
+            const row = document.createElement('div');
+            row.className = 'order-table-header';
+            row.style.cssText = "font-weight: 400; border-top: 1px solid #eee; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0;";
+            row.innerHTML = `
+                <span>${order.date}</span>
+                <span>${order.orderNum}</span>
+                <span>PHP ${order.total.toFixed(2)}</span>
+                <span style="color: #d4a373;">${order.status}</span>
+            `;
+            historySection.appendChild(row);
+        });
+    }
+}
+
+// logout feature 
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('pnp-currentUser'); // Clears only the session
+        window.location.href = 'login.html';
+    });
+}
+
+// refresh
+document.addEventListener('DOMContentLoaded', () => {
+    initProfile();
+    
+    // Wire up checkout button if we are on the cart page
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.onclick = processCheckout;
+    }
+});
+
+//shopping cart information for the user
+function renderCartUserInfo() {
+    const userInfoContainer = document.getElementById('cart-user-details');
+    if (!userInfoContainer) return;
+
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+
+    if (currentUser) {
+        userInfoContainer.innerHTML = `
+            <div class="user-info-row" style="font-family: 'Lexend', sans-serif; margin-bottom: 20px; padding: 15px; background: #ffffff; border-radius: 8px;">
+                <h4 style="margin: 0 0 5px 0; color: #3a3a3a;">Customer Details</h4>
+                <p style="margin: 2px 0; font-size: 0.9rem;"><strong>Name:</strong> ${currentUser.fname} ${currentUser.lname}</p>
+                <p style="margin: 2px 0; font-size: 0.9rem;"><strong>Email:</strong> ${currentUser.email}</p>
+                <p style="margin: 2px 0; font-size: 0.9rem;"><strong>Address:</strong> Address 0123, Philippines</p>
+            </div>
+        `;
+    } else {
+        userInfoContainer.innerHTML = `<p style="font-size: 0.8rem; color: #888; padding-left:20px; ">Please <a href="login.html">login</a> to see shipping details.</p>`;
+    }
+}
+
+// Update DOMContentLoaded 
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    renderCart();
+    initProfile();
+    renderCartUserInfo(); 
+    
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) checkoutBtn.onclick = processCheckout;
+});
+
+// check out button function for it to record on the profile tab (this is for visual and demo for now)
+function showCheckoutMessage(text, isError = true) {
+    const msgArea = document.getElementById('checkout-message');
+    if (!msgArea) return;
+
+    msgArea.textContent = text;
+    msgArea.style.color = isError ? "#e63946" : "#2a9d8f"; // Red for errors, Green for success
+
+    // Clear the message
+    setTimeout(() => {
+        msgArea.textContent = "";
+    }, 4000);
+}
+
+window.processCheckout = function() {
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+    const cart = JSON.parse(localStorage.getItem('pnp-cart') || '[]');
+
+    //check Login
+    if (!currentUser) {
+        showCheckoutMessage("Please log in first!");
+        setTimeout(() => window.location.href = 'login.html', 1500);
+        return;
+    }
+
+    //Check Cart
+    if (cart.length === 0) {
+        showCheckoutMessage("Your cart is empty!");
+        return;
+    }
+
+    const orderTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const newOrder = {
+        date: new Date().toLocaleDateString(),
+        orderNum: 'PasTels-' + Math.floor(1000 + Math.random() * 9000),
+        total: orderTotal,
+        status: 'Processing'
+    };
+
+    const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+    const userIndex = users.findIndex(u => u.email === currentUser.email);
+    
+    if (userIndex !== -1) {
+        users[userIndex].orderHistory.push(newOrder);
+        localStorage.setItem('pnp-users', JSON.stringify(users));
+        localStorage.setItem('pnp-currentUser', JSON.stringify(users[userIndex]));
+    }
+
+    localStorage.removeItem('pnp-cart');
+    showCheckoutMessage("Order recorded! Redirecting...", false);
+    
+
+    setTimeout(() => {
+        window.location.href = 'profile.html';
+    }, 1500);
+};
