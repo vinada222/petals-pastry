@@ -198,8 +198,7 @@ function renderCart() {
     updateTotals(orderTotal);
 }
 
-
-//
+//search filtering on products 
 document.addEventListener('DOMContentLoaded', function() {
 
     updateCartCount();
@@ -324,11 +323,9 @@ function setVariant(btn, price, variant) {
     });
     btn.classList.add('active');
 
-    // 2. Update global selection data
     currentPrice = price;
     currentVariant = variant;
 
-    // 3. Update the price on the screen
     const priceDisplay = document.getElementById('price-display');
     if (priceDisplay) {
         priceDisplay.textContent = 'PHP ' + price.toFixed(2);
