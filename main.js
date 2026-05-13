@@ -421,7 +421,7 @@ if (loginBtn && document.getElementById('login-email') && !document.getElementBy
             localStorage.setItem('pnp-currentUser', JSON.stringify(user));
             window.location.href = 'main_page.html';
         } else {
-            alert("Invalid email or password!");
+            document.getElementById('login-error').style.display='block';
         }
     });
 }

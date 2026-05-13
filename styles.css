@@ -136,15 +136,22 @@ body {
 }
 
 /*pastry list*/
-.pastry-row{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    gap:20px;
-    padding:10px 35px 30px;
-    width:100%;
-    box-sizing:border-box;
+.pastry-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 35px 30px;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+.pastry-row a {
+    width: calc(25% - 15px);
+    flex: none;
+    text-decoration: none;
+}
+
 .pastry-card-row {
     display: flex;
     flex-direction: column; 
@@ -188,11 +195,11 @@ body {
 .product-price {
     margin-bottom: 2px;
 }
-
-.pastry-row a {
-    text-decoration: none;
-    flex: 1;
-    min-width: 120px;
+.pastry-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 0 40px;
 }
 
 .pastry-list a {
