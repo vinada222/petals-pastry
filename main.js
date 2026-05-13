@@ -386,11 +386,22 @@ if (registerBtn && document.getElementById('input-fname')) {
         const password = document.getElementById('input-pw').value;
         const confirmPw = document.getElementById('input-confirm-pw').value;
 
-        if (!fname || !email || !password) return alert("Please fill in all fields.");
-        if (password !== confirmPw) return alert("Passwords do not match!");
+        if (!fname || !email || !password){
+        document.getElementById('create-error').style.display='block';
+        return;
+        }
+
+        if (password !== confirmPw){
+            document.getElementById('pw-unmatched').style.display='block'
+            return;
+        }
 
         const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
-        if (users.find(u => u.email === email)) return alert("Email already exists!");
+        if (users.find(u => u.email === email)){
+        document.getElementById('alr-existed').style.display='block'
+        return;
+    }
+
 
         users.push({ 
             fname, 
@@ -401,27 +412,38 @@ if (registerBtn && document.getElementById('input-fname')) {
         });
         
         localStorage.setItem('pnp-users', JSON.stringify(users));
-        alert("Account created! Redirecting to login...");
+
+        document.getElementById('madeAcc-success').style.display = 'block';
+
+        setTimeout(function() {
         window.location.href = 'login.html';
-    });
+    }, 1500);
+});
 }
 
 // Login feature
-const loginBtn = document.querySelector('#login #sign-in'); 
+const loginBtn = document.querySelector('#login #sign-in');
 
 if (loginBtn && document.getElementById('login-email') && !document.getElementById('input-fname')) {
-    loginBtn.addEventListener('click', () => {
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        
+    loginBtn.addEventListener('click', function() {
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value.trim();
+
+        if (!email || !password) {
+            document.getElementById('login-error').style.display = 'block';
+            return;
+        }
+
         const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
-        const user = users.find(u => u.email === email && u.password === password);
+        const user = users.find(function(u) {
+            return u.email === email && u.password === password;
+        });
 
         if (user) {
             localStorage.setItem('pnp-currentUser', JSON.stringify(user));
             window.location.href = 'main_page.html';
         } else {
-            document.getElementById('login-error').style.display='block';
+            document.getElementById('login-error').style.display = 'block';
         }
     });
 }
@@ -454,7 +476,7 @@ function processCheckout() {
     if (userIndex !== -1) {
         users[userIndex].orderHistory.push(newOrder);
         localStorage.setItem('pnp-users', JSON.stringify(users));
-        // Update the current session
+        
         localStorage.setItem('pnp-currentUser', JSON.stringify(users[userIndex]));
     }
 
@@ -463,7 +485,7 @@ function processCheckout() {
     window.location.href = 'profile.html';
 }
 
-// profile and history display of user's information 
+// PROFILE AND HISTORY- user's information 
 function initProfile() {
     const profileSection = document.getElementById('profile-info');
     if (!profileSection) return;
