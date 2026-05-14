@@ -134,10 +134,11 @@ function updateTotals(orderTotal) {
     const rows = document.querySelectorAll('.shipping-row span:last-child');
     if (rows.length >= 3) {
         rows[0].textContent = 'PHP ' + orderTotal.toFixed(2);
-        rows[1].textContent = 'PHP 0.00';
+        rows[1].textContent = 'FREE';
         rows[2].textContent = 'PHP ' + orderTotal.toFixed(2);
     }
 }
+
 
 //records all added products to the cart
 function renderCart() {
@@ -508,7 +509,7 @@ function initProfile() {
         currentUser.orderHistory.forEach(order => {
             const row = document.createElement('div');
             row.className = 'order-table-header';
-            row.style.cssText = "font-weight: 400; border-top: 1px solid #eee; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0;";
+            
             row.innerHTML = `
                 <span>${order.date}</span>
                 <span>${order.orderNum}</span>
@@ -629,3 +630,4 @@ window.processCheckout = function() {
         window.location.href = 'profile.html';
     }, 1500);
 };
+
