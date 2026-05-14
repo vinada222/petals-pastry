@@ -631,3 +631,24 @@ window.processCheckout = function() {
     }, 1500);
 };
 
+//CONTACT FORM PORTION
+document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const inputs = this.querySelectorAll('input, textarea');
+    const messages = JSON.parse(localStorage.getItem('pnp-messages') || '[]');
+
+    messages.push({
+        date: new Date().toLocaleDateString(),
+        name: inputs[0].value,
+        phone: inputs[1].value,
+        message: inputs[2].value
+    });
+
+    localStorage.setItem('pnp-messages', JSON.stringify(messages));
+    this.reset();
+
+    const success = document.getElementById('contact-success');
+    success.style.display = 'block';
+    setTimeout(() => success.style.display = 'none', 3000);
+});
