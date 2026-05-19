@@ -713,7 +713,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 60px 0;
-    background-image: url('/images/floral bg.png');
+    background-image: url('images/floral bg.png');
     background-size: cover;
     background-position: center;
 }
