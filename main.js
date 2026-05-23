@@ -1,3 +1,19 @@
+//favicon//
+const currentFavicon = document.querySelector("link[rel*='icon']");
+
+if (currentFavicon) {
+  currentFavicon.type = 'image/png';
+  currentFavicon.href = 'pastel logo.png';
+} else {
+  const newFavicon = document.createElement('link');
+  newFavicon.rel = 'icon';
+  newFavicon.type = 'image/png';
+  newFavicon.href = 'pastel logo.png';
+  document.head.appendChild(newFavicon);
+}
+document.title = 'Petals n Pastry';
+
+
 // ===== GLOBAL STATE =====
 let currentQty = 1;
 let currentPrice = 30;
@@ -81,9 +97,9 @@ const productDB = {
         also: ['roses', 'tulips', 'orchids']
     },
     'tulips': {
-        name: "Tulips",
-        desc: "Elegant tulips available in a variety of colors.",
-        images: ["images/tulips.png"],
+        name: "Tulips (Stem & Bouquet)",
+        desc: "Elegant, silk-soft tulips with vibrant, bell-shaped petals and fresh green stems. A graceful solo choice or a share-worthy addition to any gift box.",
+        images: ["images/tulips.png", "images/tulip2.png", "images/tulip3.png", "images/tulip4.png"],
         variants: [
             { label: "single stem", price: 70 },
             { label: "bouquet (10 pcs.)", price: 600 }
@@ -92,8 +108,8 @@ const productDB = {
     },
     'orchids': {
         name: "Orchids",
-        desc: "Exotic and elegant orchids, long-lasting and stunning.",
-        images: ["images/orchids.png"],
+        desc: "Exotic and graceful, our orchids feature delicate, architectural blooms and a long-lasting, sophisticated charm. A stunning choice as a high-end solo stem or an impressive, share-worthy gift box.",
+        images: ["images/orchids.png", "images/orchids2.png", "images/orchids3.png", "images/orchids4.png"],
         variants: [
             { label: "single stem", price: 180 },
             { label: "bouquet (5 pcs.)", price: 800 }
@@ -113,6 +129,9 @@ const productMeta = {
     'tulips':     { img: "images/tulips.png",      label: "Tulips" },
     'orchids':    { img: "images/orchids.png",     label: "Orchids" }
 };
+
+
+
 
 // search products list (global)
 const searchProducts = [
@@ -255,21 +274,21 @@ function initSelectionPage() {
 
     const alsoGrid = document.getElementById('also-grid');
     if (alsoGrid && product.also) {
-        alsoGrid.innerHTML = product.also.map(function(pid) {
-            const meta = productMeta[pid];
-            if (!meta) return '';
-            return '<a href="selection.html?id=' + pid + '">' +
-                '<div class="also-card">' +
-                '<img src="' + meta.img + '" alt="' + meta.label + '">' +
-                '<div class="product-info">' +
-                '<div class="also-name">' + meta.label + '</div>' +
-                '</div></div></a>';
-        }).join('');
-    }
-
+    alsoGrid.innerHTML = product.also.map(function(pid) {
+        const meta = productMeta[pid];
+        const alsoProduct = productDB[pid]; 
+        if (!meta) return '';
+        return '<a href="selection.html?id=' + pid + '">' +
+            '<div class="also-card">' +
+            '<img src="' + meta.img + '" alt="' + meta.label + '">' +
+            '<div class="product-info">' +
+            '<div class="also-price">₱' + alsoProduct.variants[alsoProduct.variants.length -1].price.toFixed(2) + '</div>' + 
+            '<div class="also-name">' + meta.label + '</div>' +
+            '</div></div></a>';
+    }).join('');
+}
     document.title = product.name + ' | Petals n Pastry';
 }
-
 
 // ===== CART COUNT BADGE =====
 function updateCartCount() {

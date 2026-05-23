@@ -280,14 +280,39 @@ body {
     min-height: 100vh;
 }
 
+
+p {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 0 15px 0;
+}
+
+h3 {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 15px 0 5px 0;
+}
+
+.price, span { 
+  text-align: left;
+  padding-left: 20px;
+}
+
 #product-section {
     display: flex;
     padding:40px;
     flex-wrap: wrap;
     background-color:#FBF7EE;
 }
-#qty-row{
-    padding-bottom:24px;
+#qty-row {
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 20px; 
+    margin-left: 0;
 }
 /* left most part */
 #product-img-col {
@@ -402,19 +427,19 @@ body {
     gap: 12px;
 }
 
-.qty-btn{
+.qty-btn {
     width: 28px;
     height: 28px;
-    padding-bottom:-24px;
     border-radius: 50%;
     border: 1.5px solid #3a3a3a;
     background: #000;
     cursor: pointer;
     font-size: 16px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;      
+    justify-content: center;   
     color: #fff;
+    line-height: 1;            
 }
 
 .qty-btn:hover {
@@ -426,14 +451,16 @@ body {
     display:flex;
     align-items:center;
     gap:12px;
-    margin-left: 79px;
+    margin-left: 55px;
 }
 #qty-num {
-    font-size: 14px;
+    font-size: 15px;
     min-width: 20px;
     text-align: center;
     color: #3a3a3a;
     font-family: 'Lexend', sans-serif;
+
+    margin-right:20px;
 }
 #add-to-cart-btn {
     background:none;
@@ -511,7 +538,6 @@ body {
 
 .also-price {
     font-family: 'Lexend', sans-serif;
-    
     font-size: 15px;
     color: #3A3A3A;
     padding-left:5px;
@@ -520,7 +546,7 @@ body {
 
 .also-name {
     font-family: 'Lexend', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     color: #3a3a3a;
 }
 
@@ -928,6 +954,7 @@ body {
     padding-left:20px;
     padding-top:25px;
 }
+
 
 #cart-info p{
     font-family:'lexend';
