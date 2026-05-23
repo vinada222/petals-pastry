@@ -584,6 +584,7 @@ body {
 #about-us-section {
     display: flex;
     width: 100%;
+    scroll-margin-top: 130px;
 }
 
 #about-us {
@@ -1207,8 +1208,17 @@ body {
     text-decoration:none;
 }
 
+#about-us-section {
+    scroll-margin-top: 118px;
+}
+
+#contact {
+    scroll-margin-top: -0.2px;
+    display: block;
+}
+
 #contact-info{
-    flex: 1;
+    
     min-width: 150px;
 }
 

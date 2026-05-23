@@ -1,12 +1,134 @@
-// GLOBAL STATE
-
+// ===== GLOBAL STATE =====
 let currentQty = 1;
 let currentPrice = 30;
 let currentVariant = 'solo (1 pc.)';
 
 
-// CART STORAGE 
+// ===== PRODUCT DATABASE (GLOBAL) =====
+const productDB = {
+    'biscoff': {
+        name: "Crunchy Biscoff Cookie (Solo & Box)",
+        
+        desc: "A buttery, crisp cookie packed with rich Biscoff spread and crunchy Biscoff crumbles. Perfect as a solo treat or share-worthy box gift.",
+        
+        images: ["images/biscoff.png", "images/biscoff2.png", "images/biscoff3.png", "images/biscoff4.png"],
+        variants: [
+            { label: "solo (1 pc.)", price: 30 },
+            { label: "one mini box (6 pcs.)", price: 160 }
+        ],
+        also: ['matcha', 'chips', 'smores', 'redvelvet']
+    },
+    'matcha': {
+        name: "Matcha Cookie with White Chocolate",
+        
+        desc: "A vibrant, earthy cookie featuring premium ceremonial-grade matcha and velvety white chocolate pools. A sophisticated balance of bittersweet notes and buttery softness in every bite.",
+        
+        images: ["images/matcha.png", "images/matcha2.png", "images/matcha3.png", "images/matcha4.png"],
+        variants: [
+            { label: "solo (1 pc.)", price: 30 },
+            { label: "one mini box (6 pcs.)", price: 160 }
+        ],
+        also: ['biscoff', 'chips', 'smores', 'redvelvet']
+    },
+    'chips': {
+        name: "Chocolate Chip Cookie (Solo & Box)",
+        desc: "A timeless classic featuring a golden, buttery base loaded with melty semi-sweet chocolate chunks and a hint of sea salt. Perfectly crisp edges with a soft, chewy center that feels like home.",
+        images: ["images/chips.png", "images/chip2.png", "images/chip3.png", "images/chip4.png"],
+        variants: [
+            { label: "solo (1 pc.)", price: 30 },
+            { label: "one mini box (6 pcs.)", price: 160 }
+        ],
+        also: ['biscoff', 'matcha', 'smores', 'redvelvet']
+    },
+    'smores': {
+        name: "S'mores Cookie (Solo & Box)",
+        desc: "Gooey marshmallow and rich chocolate in a campfire-inspired cookie.",
+        images: ["images/smores.png", "images/s'mores2.png", "images/s'mores3.png", "images/s'mores4.png"],
+        variants: [
+            { label: "solo (1 pc.)", price: 30 },
+            { label: "one mini box (6 pcs.)", price: 160 }
+        ],
+        also: ['biscoff', 'matcha', 'chips', 'redvelvet']
+    },
+    'redvelvet': {
+        name: "Red Velvet Cookie (Solo & Box)",
+        desc: "A decadent, deep-red cocoa base swirled with creamy white chocolate chips and a hint of tangy sweetness. Velvety smooth and strikingly bold, it’s the ultimate fusion of rich cake flavor and a classic cookie crunch.",
+        images: ["images/redvelvet.png", "images/redvelvet2.png", "images/redvelvet3.png", "images/redvelvet4.png"],
+        variants: [
+            { label: "solo (1 pc.)", price: 30 },
+            { label: "one mini box (6 pcs.)", price: 160 }
+        ],
+        also: ['biscoff', 'matcha', 'chips', 'smores']
+    },
+    'roses': {
+        name: "Roses (Stem & Bouquet)",
+        desc: "Elegant, hand-picked roses with velvety petals and a delicate fragrance. The perfect floral companion to our sweet treats, available as a single stem or a stunning boxed set.",
+        images: ["images/roses.png", "images/rose2.png", "images/rose3.png", "images/rose4.png"],
+        variants: [
+            { label: "single stem", price: 50 },
+            { label: "bouquet (12 pcs.)", price: 500 }
+        ],
+        also: ['sunflowers', 'tulips', 'orchids']
+    },
+    'sunflowers': {
+        name: "Sunflowers (Stem & Bouquet)",
+        desc: "Bright, sun-drenched blooms with velvet-soft petals and striking dark centers. A bold statement as a single stem or a share-worthy gift box.",
+        images: ["images/sunflowers.png", "images/sunflower2.png", "images/sunflower3.png", "images/sunflower4.png"],
+        variants: [
+            { label: "single stem", price: 100 },
+            { label: "bouquet (6 pcs.)", price: 550 }
+        ],
+        also: ['roses', 'tulips', 'orchids']
+    },
+    'tulips': {
+        name: "Tulips",
+        desc: "Elegant tulips available in a variety of colors.",
+        images: ["images/tulips.png"],
+        variants: [
+            { label: "single stem", price: 70 },
+            { label: "bouquet (10 pcs.)", price: 600 }
+        ],
+        also: ['roses', 'sunflowers', 'orchids']
+    },
+    'orchids': {
+        name: "Orchids",
+        desc: "Exotic and elegant orchids, long-lasting and stunning.",
+        images: ["images/orchids.png"],
+        variants: [
+            { label: "single stem", price: 180 },
+            { label: "bouquet (5 pcs.)", price: 800 }
+        ],
+        also: ['roses', 'sunflowers', 'tulips']
+    }
+};
 
+const productMeta = {
+    'biscoff':    { img: "images/biscoff.png",    label: "Crunchy Biscoff Cookie" },
+    'matcha':     { img: "images/matcha.png",     label: "Matcha Cookie with White Chocolate" },
+    'chips':      { img: "images/chips.png",       label: "Chocolate Chip Cookie" },
+    'smores':     { img: "images/smores.png",      label: "S'mores Cookie" },
+    'redvelvet':  { img: "images/RedVelvet.png",   label: "Red Velvet Cookie" },
+    'roses':      { img: "images/roses.png",       label: "Roses" },
+    'sunflowers': { img: "images/sunflowers.png",  label: "Sunflowers" },
+    'tulips':     { img: "images/tulips.png",      label: "Tulips" },
+    'orchids':    { img: "images/orchids.png",     label: "Orchids" }
+};
+
+// search products list (global)
+const searchProducts = [
+    { name: "Crunchy Biscoff Cookie",             price: "₱160.00", img: "images/biscoff.png",    href: "selection.html?id=biscoff",    category: "cookies" },
+    { name: "Matcha Cookie with White Chocolate", price: "₱160.00", img: "images/matcha.png",     href: "selection.html?id=matcha",     category: "cookies" },
+    { name: "Chocolate Chip Cookie",              price: "₱160.00", img: "images/chips.png",      href: "selection.html?id=chips",      category: "cookies" },
+    { name: "Red Velvet Cookie",                  price: "₱160.00", img: "images/RedVelvet.png",  href: "selection.html?id=redvelvet",  category: "cookies" },
+    { name: "S'mores Cookie",                     price: "₱160.00", img: "images/smores.png",     href: "selection.html?id=smores",     category: "cookies" },
+    { name: "Roses",                              price: "₱50.00",  img: "images/roses.png",      href: "selection.html?id=roses",      category: "flowers" },
+    { name: "Sunflowers",                         price: "₱100.00", img: "images/sunflowers.png", href: "selection.html?id=sunflowers", category: "flowers" },
+    { name: "Tulips",                             price: "₱70.00",  img: "images/tulips.png",     href: "selection.html?id=tulips",     category: "flowers" },
+    { name: "Orchids",                            price: "₱180.00", img: "images/orchids.png",    href: "selection.html?id=orchids",    category: "flowers" },
+];
+
+
+// ===== CART STORAGE =====
 function getCart() {
     return JSON.parse(localStorage.getItem('pnp-cart') || '[]');
 }
@@ -15,7 +137,8 @@ function saveCart(cart) {
     localStorage.setItem('pnp-cart', JSON.stringify(cart));
 }
 
-// SELECTION PAGE 
+
+// ===== SELECTION PAGE =====
 function changeQty(change) {
     currentQty = Math.max(1, currentQty + change);
     document.getElementById('qty-num').textContent = currentQty;
@@ -28,6 +151,18 @@ function setVariant(btn, price, variant) {
     btn.classList.add('active');
     currentPrice = price;
     currentVariant = variant;
+
+    const priceDisplay = document.getElementById('price-display');
+    if (priceDisplay) {
+        priceDisplay.textContent = 'PHP ' + price.toFixed(2);
+    }
+
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    if (addToCartBtn) {
+        addToCartBtn.disabled = false;
+        addToCartBtn.style.cursor = 'pointer';
+        addToCartBtn.style.opacity = '1';
+    }
 }
 
 function setThumb(img) {
@@ -64,7 +199,79 @@ function addToCart() {
     updateCartCount();
 }
 
-// CART COUNT
+
+// ===== DYNAMIC SELECTION PAGE =====
+function initSelectionPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (!id || !productDB[id]) return;
+
+    const product = productDB[id];
+
+    currentPrice = product.variants[0].price;
+    currentVariant = product.variants[0].label;
+
+    const title = document.getElementById('product-title');
+    if (title) title.textContent = product.name;
+
+    const desc = document.getElementById('product-desc');
+    if (desc) desc.textContent = product.desc;
+
+    const priceDisplay = document.getElementById('price-display');
+    if (priceDisplay) {
+        const min = product.variants[0].price;
+        const max = product.variants[product.variants.length - 1].price;
+        priceDisplay.textContent = min === max
+            ? 'PHP ' + min.toFixed(2)
+            : 'PHP ' + min.toFixed(2) + ' - PHP ' + max.toFixed(2);
+    }
+
+    const mainImg = document.getElementById('main-product-img');
+    if (mainImg) {
+        mainImg.src = product.images[0];
+        mainImg.alt = product.name;
+    }
+
+    const thumbContainer = document.getElementById('product-reco');
+    if (thumbContainer) {
+        thumbContainer.innerHTML = product.images.map(function(src, i) {
+            return '<img src="' + src + '" class="thumb ' + (i === 0 ? 'active' : '') + '" onclick="setThumb(this)">';
+        }).join('');
+    }
+
+    const variantRow = document.getElementById('variant-row');
+    if (variantRow) {
+        variantRow.innerHTML = product.variants.map(function(v, i) {
+            return '<button class="variant-btn ' + (i === 0 ? 'active' : '') + '" onclick="setVariant(this, ' + v.price + ', \'' + v.label + '\')">' + v.label + '</button>';
+        }).join('');
+    }
+
+    const addBtn = document.getElementById('add-to-cart-btn');
+    if (addBtn) {
+        addBtn.disabled = false;
+        addBtn.style.cursor = 'pointer';
+        addBtn.style.opacity = '1';
+    }
+
+    const alsoGrid = document.getElementById('also-grid');
+    if (alsoGrid && product.also) {
+        alsoGrid.innerHTML = product.also.map(function(pid) {
+            const meta = productMeta[pid];
+            if (!meta) return '';
+            return '<a href="selection.html?id=' + pid + '">' +
+                '<div class="also-card">' +
+                '<img src="' + meta.img + '" alt="' + meta.label + '">' +
+                '<div class="product-info">' +
+                '<div class="also-name">' + meta.label + '</div>' +
+                '</div></div></a>';
+        }).join('');
+    }
+
+    document.title = product.name + ' | Petals n Pastry';
+}
+
+
+// ===== CART COUNT BADGE =====
 function updateCartCount() {
     const cart = getCart();
     const total = cart.reduce(function(sum, item) {
@@ -103,15 +310,13 @@ function updateCartCount() {
     }
 }
 
-// CART PAGE FUNCTIONS
 
+// ===== CART PAGE =====
 function changeCartQty(id, change) {
     const cart = getCart();
     const item = cart.find(function(i) { return i.id === id; });
-    
     if (item) {
         const newQty = item.qty + change;
-        
         if (newQty <= 0) {
             removeFromCart(id);
         } else {
@@ -139,8 +344,6 @@ function updateTotals(orderTotal) {
     }
 }
 
-
-//records all added products to the cart
 function renderCart() {
     const cartItemsContainer = document.getElementById('cart-items-container');
     if (!cartItemsContainer) return;
@@ -151,16 +354,15 @@ function renderCart() {
 
     cartItemsContainer.innerHTML = '';
 
-    if (ordersHeader) ordersHeader.style.display = 'grid';
-
     if (cart.length === 0) {
-
         if (notice) notice.style.display = 'block';
+        if (ordersHeader) ordersHeader.style.display = 'none';
         updateTotals(0);
         return;
     }
 
     if (notice) notice.style.display = 'none';
+    if (ordersHeader) ordersHeader.style.display = 'grid';
 
     let orderTotal = 0;
 
@@ -168,7 +370,6 @@ function renderCart() {
         const itemTotal = item.price * item.qty;
         orderTotal += itemTotal;
 
-        // horizontal line on details/menu info
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.style.cssText = `
@@ -191,7 +392,7 @@ function renderCart() {
                 <button onclick="changeCartQty(${item.id}, 1)" style="background:none;border:none;font-size:1.1rem;cursor:pointer;color:#3a3a3a;">+</button>
             </div>
             <p style="font-family:'Lexend',sans-serif;font-size:0.85rem;color:#3a3a3a;margin:0;text-align:right;">PHP ${itemTotal.toFixed(2)}</p>
-            <button onclick="removeFromCart(${item.id})" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:1rem;">🗑</button>
+            <button onclick="removeFromCart(${item.id})" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:1rem;"><i class="fa-solid fa-trash"></i></button>
         `;
         cartItemsContainer.appendChild(div);
     });
@@ -199,14 +400,221 @@ function renderCart() {
     updateTotals(orderTotal);
 }
 
-//search filtering on products 
-document.addEventListener('DOMContentLoaded', function() {
 
+// ===== PROFILE =====
+function initProfile() {
+    const profileSection = document.getElementById('profile-info');
+    if (!profileSection) return;
+
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+    if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const title = document.getElementById('profile-title');
+    if (title) title.innerText = currentUser.fname.toUpperCase() + "'S ACCOUNT";
+
+    const historySection = document.getElementById('order-history-section');
+    const notice = document.querySelector('.notice-1');
+
+    if (currentUser.orderHistory && currentUser.orderHistory.length > 0) {
+        if (notice) notice.style.display = 'none';
+        currentUser.orderHistory.forEach(function(order) {
+            const row = document.createElement('div');
+            row.className = 'order-table-header';
+            row.innerHTML = `
+                <span>${order.date}</span>
+                <span>${order.orderNum}</span>
+                <span>PHP ${order.total.toFixed(2)}</span>
+                <span style="color:#d4a373;">${order.status}</span>
+            `;
+            historySection.appendChild(row);
+        });
+    }
+}
+
+
+// ===== CART USER INFO =====
+function renderCartUserInfo() {
+    const userInfoContainer = document.getElementById('cart-user-details');
+    if (!userInfoContainer) return;
+
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+    if (currentUser) {
+        userInfoContainer.innerHTML = `
+            <div style="font-family:'Lexend',sans-serif; margin-bottom:20px; padding:15px; background:#ffffff; border-radius:8px;">
+                <p style="margin:2px 0; font-size:0.9rem;"><strong>Name:</strong> ${currentUser.fname} ${currentUser.lname}</p>
+                <p style="margin:2px 0; font-size:0.9rem;"><strong>Email:</strong> ${currentUser.email}</p>
+            </div>
+        `;
+    } else {
+        userInfoContainer.innerHTML = `<p style="font-size:0.8rem;color:#888;padding-left:20px;">Please <a href="login.html">login</a> to see details.</p>`;
+    }
+}
+
+
+// ===== CHECKOUT =====
+function showCheckoutMessage(text, isError) {
+    if (isError === undefined) isError = true;
+    const msgArea = document.getElementById('checkout-message');
+    if (!msgArea) return;
+    msgArea.textContent = text;
+    msgArea.style.color = isError ? '#e63946' : '#2a9d8f';
+    setTimeout(function() { msgArea.textContent = ''; }, 4000);
+}
+
+window.processCheckout = function() {
+    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
+    const cart = JSON.parse(localStorage.getItem('pnp-cart') || '[]');
+
+    if (!currentUser) {
+        showCheckoutMessage('Please log in first!');
+        setTimeout(function() { window.location.href = 'login.html'; }, 1500);
+        return;
+    }
+
+    if (cart.length === 0) {
+        showCheckoutMessage('Your cart is empty!');
+        return;
+    }
+
+    const orderTotal = cart.reduce(function(sum, item) {
+        return sum + (item.price * item.qty);
+    }, 0);
+
+    const newOrder = {
+        date: new Date().toLocaleDateString(),
+        orderNum: 'PasTels-' + Math.floor(1000 + Math.random() * 9000),
+        total: orderTotal,
+        status: 'Processing'
+    };
+
+    const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+    const userIndex = users.findIndex(function(u) { return u.email === currentUser.email; });
+
+    if (userIndex !== -1) {
+        if (!users[userIndex].orderHistory) users[userIndex].orderHistory = [];
+        users[userIndex].orderHistory.push(newOrder);
+        localStorage.setItem('pnp-users', JSON.stringify(users));
+        localStorage.setItem('pnp-currentUser', JSON.stringify(users[userIndex]));
+    }
+
+    localStorage.removeItem('pnp-cart');
+    showCheckoutMessage('Order recorded! Redirecting...', false);
+    setTimeout(function() { window.location.href = 'profile.html'; }, 1500);
+};
+
+
+// ===== LOGOUT =====
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('pnp-currentUser');
+        window.location.href = 'login.html';
+    });
+}
+
+
+// ===== REGISTER =====
+const registerBtn = document.querySelector('#login #sign-in');
+if (registerBtn && document.getElementById('input-fname')) {
+    registerBtn.addEventListener('click', function() {
+        const fname = document.getElementById('input-fname').value;
+        const lname = document.getElementById('input-lname').value;
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('input-pw').value;
+        const confirmPw = document.getElementById('input-confirm-pw').value;
+
+        if (!fname || !email || !password) {
+            document.getElementById('create-error').style.display = 'block';
+            return;
+        }
+        if (password !== confirmPw) {
+            document.getElementById('pw-unmatched').style.display = 'block';
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+        if (users.find(function(u) { return u.email === email; })) {
+            document.getElementById('alr-existed').style.display = 'block';
+            return;
+        }
+
+        users.push({ fname: fname, lname: lname, email: email, password: password, orderHistory: [] });
+        localStorage.setItem('pnp-users', JSON.stringify(users));
+        document.getElementById('madeAcc-success').style.display = 'block';
+        setTimeout(function() { window.location.href = 'login.html'; }, 1500);
+    });
+}
+
+
+// ===== LOGIN =====
+const loginBtn = document.querySelector('#login #sign-in');
+if (loginBtn && document.getElementById('login-email') && !document.getElementById('input-fname')) {
+    loginBtn.addEventListener('click', function() {
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value.trim();
+
+        if (!email || !password) {
+            document.getElementById('login-error').style.display = 'block';
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+        const user = users.find(function(u) { return u.email === email && u.password === password; });
+
+        if (user) {
+            localStorage.setItem('pnp-currentUser', JSON.stringify(user));
+            window.location.href = 'main_page.html';
+        } else {
+            document.getElementById('login-error').style.display = 'block';
+        }
+    });
+}
+
+
+// ===== SMOOTH SCROLL =====
+window.addEventListener('load', function() {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+
+// ===== CONTACT FORM =====
+document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const inputs = this.querySelectorAll('input, textarea');
+    const messages = JSON.parse(localStorage.getItem('pnp-messages') || '[]');
+    messages.push({
+        date: new Date().toLocaleDateString(),
+        name: inputs[0].value,
+        phone: inputs[1].value,
+        message: inputs[2].value
+    });
+    localStorage.setItem('pnp-messages', JSON.stringify(messages));
+    this.reset();
+    const success = document.getElementById('contact-success');
+    if (success) {
+        success.style.display = 'block';
+        setTimeout(function() { success.style.display = 'none'; }, 3000);
+    }
+});
+
+
+// ===== SINGLE DOMContentLoaded =====
+document.addEventListener('DOMContentLoaded', function() {
+    initSelectionPage();
     updateCartCount();
     renderCart();
+    initProfile();
+    renderCartUserInfo();
 
-    const firstVariant = document.querySelector('.variant-btn');
-    if (firstVariant) firstVariant.classList.add('active');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) checkoutBtn.onclick = window.processCheckout;
 
     // SEARCH
     const searchBtn = document.getElementById('search-btn');
@@ -214,18 +622,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeSearch = document.getElementById('close-search');
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
-
-    const products = [
-        { name: "Crunchy Biscoff Cookie",             price: "₱160.00", img: "images/biscoff.png",    href: "selection.html",           category: "cookies" },
-        { name: "Matcha Cookie with White Chocolate", price: "₱160.00", img: "images/matcha.png",     href: "selection-2.html",         category: "cookies" },
-        { name: "Chocolate Chip Cookie",              price: "₱160.00", img: "images/chips.png",      href: "selection-3.html",         category: "cookies" },
-        { name: "Red Velvet Cookie",                  price: "₱160.00", img: "images/RedVelvet.png",  href: "selection-4.html",         category: "cookies" },
-        { name: "S'mores Cookie",                     price: "₱160.00", img: "images/smores.png",     href: "selection-5.html",         category: "cookies" },
-        { name: "Roses",                              price: "₱50.00",  img: "images/roses.png",      href: "rose-selection.html",      category: "flowers" },
-        { name: "Sunflowers",                         price: "₱100.00", img: "images/sunflowers.png", href: "sunflower-selection.html", category: "flowers" },
-        { name: "Tulips",                             price: "₱70.00",  img: "images/tulips.png",     href: "tulips-selection.html",    category: "flowers" },
-        { name: "Orchids",                            price: "₱180.00", img: "images/orchids.png",    href: "#",                        category: "flowers" },
-    ];
 
     if (searchBtn) {
         searchBtn.addEventListener('click', function(e) {
@@ -251,7 +647,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             const query = searchInput.value.trim().toLowerCase();
-
             if (query === '') {
                 if (searchResults) {
                     searchResults.classList.remove('open');
@@ -260,29 +655,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            const filtered = products.filter(function(product) {
-                return (
-                    product.name.toLowerCase().includes(query) ||
-                    product.category.includes(query)
-                );
+            const filtered = searchProducts.filter(function(product) {
+                return product.name.toLowerCase().includes(query) || product.category.includes(query);
             });
 
             if (searchResults) {
-                if (filtered.length === 0) {
-                    searchResults.innerHTML = '<p class="no-results">No results found.</p>';
-                } else {
-                    searchResults.innerHTML = filtered.map(function(product) {
-                        return `
-                            <a href="${product.href}" class="search-result-item">
-                                <img src="${product.img}" alt="${product.name}">
-                                <div class="result-info">
-                                    <span class="result-name">${product.name}</span>
-                                    <span class="result-price">${product.price}</span>
-                                </div>
-                            </a>
-                        `;
+                searchResults.innerHTML = filtered.length === 0
+                    ? '<p class="no-results">No results found.</p>'
+                    : filtered.map(function(p) {
+                        return `<a href="${p.href}" class="search-result-item">
+                            <img src="${p.img}" alt="${p.name}">
+                            <div class="result-info">
+                                <span class="result-name">${p.name}</span>
+                                <span class="result-price">${p.price}</span>
+                            </div>
+                        </a>`;
                     }).join('');
-                }
                 searchResults.classList.add('open');
             }
         });
@@ -294,7 +682,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // CHANGE PASSWORD
+    // CHANGE PASSWORD MODAL
     const openBtn = document.getElementById('change-password-btn');
     const closeBtn = document.getElementById('close-modal');
     const modal = document.getElementById('change-password-modal');
@@ -304,351 +692,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             modal.classList.add('active');
         });
-
         closeBtn.addEventListener('click', function() {
             modal.classList.remove('active');
         });
-
         modal.addEventListener('click', function(e) {
             if (e.target === modal) modal.classList.remove('active');
         });
     }
-
-});
-
-//buttons for solo and box 
-function setVariant(btn, price, variant) {
-    // 1. Toggle active class visual
-    document.querySelectorAll('.variant-btn').forEach(function(b) {
-        b.classList.remove('active');
-    });
-    btn.classList.add('active');
-
-    currentPrice = price;
-    currentVariant = variant;
-
-    const priceDisplay = document.getElementById('price-display');
-    if (priceDisplay) {
-        priceDisplay.textContent = 'PHP ' + price.toFixed(2);
-    }
-}
-
-//menu achnor link 
-window.addEventListener('load', function() {
-    if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-});
-
-function setVariant(btn, price, variant) {
-
-    document.querySelectorAll('.variant-btn').forEach(function(b) {
-        b.classList.remove('active');
-    });
-    btn.classList.add('active');
-
-    currentPrice = price;
-    currentVariant = variant;
-
-    const priceDisplay = document.getElementById('price-display');
-    if (priceDisplay) {
-        priceDisplay.textContent = 'PHP ' + price.toFixed(2);
-    }
-
-    const addToCartBtn = document.getElementById('add-to-cart-btn');
-    if (addToCartBtn) {
-        addToCartBtn.disabled = false;
-    }
-}
-
-// USERS AND SESSIONS
-document.addEventListener('click', function(e) {
-    if (e.target && e.target.textContent === 'Create Account') {
-        e.preventDefault();
-        window.location.href = 'register.html';
-    }
-    if (e.target && e.target.textContent.includes('log in here')) {
-        e.preventDefault();
-        window.location.href = 'login.html';
-    }
-});
-
-//Register or Create a new account feature
-const registerBtn = document.querySelector('#login #sign-in'); 
-
-if (registerBtn && document.getElementById('input-fname')) {
-    registerBtn.addEventListener('click', () => {
-        const fname = document.getElementById('input-fname').value;
-        const lname = document.getElementById('input-lname').value;
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('input-pw').value;
-        const confirmPw = document.getElementById('input-confirm-pw').value;
-
-        if (!fname || !email || !password){
-        document.getElementById('create-error').style.display='block';
-        return;
-        }
-
-        if (password !== confirmPw){
-            document.getElementById('pw-unmatched').style.display='block'
-            return;
-        }
-
-        const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
-        if (users.find(u => u.email === email)){
-        document.getElementById('alr-existed').style.display='block'
-        return;
-    }
-
-
-        users.push({ 
-            fname, 
-            lname, 
-            email, 
-            password, 
-            orderHistory: [] 
-        });
-        
-        localStorage.setItem('pnp-users', JSON.stringify(users));
-
-        document.getElementById('madeAcc-success').style.display = 'block';
-
-        setTimeout(function() {
-        window.location.href = 'login.html';
-    }, 1500);
-});
-}
-
-// Login feature
-const loginBtn = document.querySelector('#login #sign-in');
-
-if (loginBtn && document.getElementById('login-email') && !document.getElementById('input-fname')) {
-    loginBtn.addEventListener('click', function() {
-        const email = document.getElementById('login-email').value.trim();
-        const password = document.getElementById('login-password').value.trim();
-
-        if (!email || !password) {
-            document.getElementById('login-error').style.display = 'block';
-            return;
-        }
-
-        const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
-        const user = users.find(function(u) {
-            return u.email === email && u.password === password;
-        });
-
-        if (user) {
-            localStorage.setItem('pnp-currentUser', JSON.stringify(user));
-            window.location.href = 'main_page.html';
-        } else {
-            document.getElementById('login-error').style.display = 'block';
-        }
-    });
-}
-
-// check out monitor and record
-function processCheckout() {
-    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
-    const cart = JSON.parse(localStorage.getItem('pnp-cart') || '[]');
-
-    if (!currentUser) {
-        alert("Please log in to checkout!");
-        window.location.href = 'login.html';
-        return;
-    }
-
-    if (cart.length === 0) return alert("Your cart is empty!");
-
-    const orderTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    const newOrder = {
-        date: new Date().toLocaleDateString(),
-        orderNum: 'PNP-' + Math.floor(1000 + Math.random() * 9000),
-        total: orderTotal,
-        status: 'Processing'
-    };
-
-    // Update the local storage (database for now)
-    const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
-    const userIndex = users.findIndex(u => u.email === currentUser.email);
-    
-    if (userIndex !== -1) {
-        users[userIndex].orderHistory.push(newOrder);
-        localStorage.setItem('pnp-users', JSON.stringify(users));
-        
-        localStorage.setItem('pnp-currentUser', JSON.stringify(users[userIndex]));
-    }
-
-    localStorage.removeItem('pnp-cart'); //clears data
-    alert("Purchase successful! Redirecting to profile...");
-    window.location.href = 'profile.html';
-}
-
-// PROFILE AND HISTORY- user's information 
-function initProfile() {
-    const profileSection = document.getElementById('profile-info');
-    if (!profileSection) return;
-
-    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
-    if (!currentUser) {
-        window.location.href = 'login.html';
-        return;
-    }
-
-    const title = document.getElementById('profile-title');
-    if (title) title.innerText = `${currentUser.fname.toUpperCase()}'S ACCOUNT`;
-    
-    const historySection = document.getElementById('order-history-section');
-    const notice = document.querySelector('.notice-1');
-
-    if (currentUser.orderHistory && currentUser.orderHistory.length > 0) {
-        if (notice) notice.style.display = 'none';
-        
-        currentUser.orderHistory.forEach(order => {
-            const row = document.createElement('div');
-            row.className = 'order-table-header';
-            
-            row.innerHTML = `
-                <span>${order.date}</span>
-                <span>${order.orderNum}</span>
-                <span>PHP ${order.total.toFixed(2)}</span>
-                <span style="color: #d4a373;">${order.status}</span>
-            `;
-            historySection.appendChild(row);
-        });
-    }
-}
-
-// logout feature 
-const logoutBtn = document.getElementById('logout-btn');
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        localStorage.removeItem('pnp-currentUser'); // Clears only the session
-        window.location.href = 'login.html';
-    });
-}
-
-// refresh
-document.addEventListener('DOMContentLoaded', () => {
-    initProfile();
-    
-    // Wire up checkout button if we are on the cart page
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.onclick = processCheckout;
-    }
-});
-
-//shopping cart information for the user
-function renderCartUserInfo() {
-    const userInfoContainer = document.getElementById('cart-user-details');
-    if (!userInfoContainer) return;
-
-    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
-
-    if (currentUser) {
-        userInfoContainer.innerHTML = `
-            <div class="user-info-row" style="font-family: 'Lexend', sans-serif; margin-bottom: 20px; padding: 15px; background: #ffffff; border-radius: 8px;">
-                <h4 style="margin: 0 0 5px 0; color: #3a3a3a;">Customer Details</h4>
-                <p style="margin: 2px 0; font-size: 0.9rem;"><strong>Name:</strong> ${currentUser.fname} ${currentUser.lname}</p>
-                <p style="margin: 2px 0; font-size: 0.9rem;"><strong>Email:</strong> ${currentUser.email}</p>
-                <p style="margin: 2px 0; font-size: 0.9rem;"><strong>Address:</strong> Address 0123, Philippines</p>
-            </div>
-        `;
-    } else {
-        userInfoContainer.innerHTML = `<p style="font-size: 0.8rem; color: #888; padding-left:20px; ">Please <a href="login.html">login</a> to see shipping details.</p>`;
-    }
-}
-
-// Update DOMContentLoaded 
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-    renderCart();
-    initProfile();
-    renderCartUserInfo(); 
-    
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) checkoutBtn.onclick = processCheckout;
-});
-
-// check out button function for it to record on the profile tab (this is for visual and demo for now)
-function showCheckoutMessage(text, isError = true) {
-    const msgArea = document.getElementById('checkout-message');
-    if (!msgArea) return;
-
-    msgArea.textContent = text;
-    msgArea.style.color = isError ? "#e63946" : "#2a9d8f"; // Red for errors, Green for success
-
-    // Clear the message
-    setTimeout(() => {
-        msgArea.textContent = "";
-    }, 4000);
-}
-
-window.processCheckout = function() {
-    const currentUser = JSON.parse(localStorage.getItem('pnp-currentUser'));
-    const cart = JSON.parse(localStorage.getItem('pnp-cart') || '[]');
-
-    //check Login
-    if (!currentUser) {
-        showCheckoutMessage("Please log in first!");
-        setTimeout(() => window.location.href = 'login.html', 1500);
-        return;
-    }
-
-    //Check Cart
-    if (cart.length === 0) {
-        showCheckoutMessage("Your cart is empty!");
-        return;
-    }
-
-    const orderTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    const newOrder = {
-        date: new Date().toLocaleDateString(),
-        orderNum: 'PasTels-' + Math.floor(1000 + Math.random() * 9000),
-        total: orderTotal,
-        status: 'Processing'
-    };
-
-    const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
-    const userIndex = users.findIndex(u => u.email === currentUser.email);
-    
-    if (userIndex !== -1) {
-        users[userIndex].orderHistory.push(newOrder);
-        localStorage.setItem('pnp-users', JSON.stringify(users));
-        localStorage.setItem('pnp-currentUser', JSON.stringify(users[userIndex]));
-    }
-
-    localStorage.removeItem('pnp-cart');
-    showCheckoutMessage("Order recorded! Redirecting...", false);
-    
-
-    setTimeout(() => {
-        window.location.href = 'profile.html';
-    }, 1500);
-};
-
-//CONTACT FORM PORTION
-document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const inputs = this.querySelectorAll('input, textarea');
-    const messages = JSON.parse(localStorage.getItem('pnp-messages') || '[]');
-
-    messages.push({
-        date: new Date().toLocaleDateString(),
-        name: inputs[0].value,
-        phone: inputs[1].value,
-        message: inputs[2].value
-    });
-
-    localStorage.setItem('pnp-messages', JSON.stringify(messages));
-    this.reset();
-
-    const success = document.getElementById('contact-success');
-    success.style.display = 'block';
-    setTimeout(() => success.style.display = 'none', 3000);
 });
