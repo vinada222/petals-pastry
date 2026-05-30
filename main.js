@@ -774,3 +774,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// forgot password
+const forgotBtn = document.getElementById('forgot-pw-btn');
+const forgotModal = document.getElementById('forgot-modal');
+const resetCancel = document.getElementById('reset-cancel');
+const resetSubmit = document.getElementById('reset-submit');
+
+if (forgotBtn && forgotModal) {
+  forgotBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    forgotModal.style.display = 'flex';
+  });
+
+  resetCancel.addEventListener('click', function() {
+    forgotModal.style.display = 'none';
+    document.getElementById('reset-email').value = '';
+    document.getElementById('reset-new-pw').value = '';
+    document.getElementById('reset-error').style.display = 'none';
+    document.getElementById('reset-success').style.display = 'none';
+  });
+
+  resetSubmit.addEventListener('click', function() {
+    const email = document.getElementById('reset-email').value.trim();
+    const newPw = document.getElementById('reset-new-pw').value.trim();
+    const resetError = document.getElementById('reset-error');
+    const resetSuccess = document.getElementById('reset-success');
+
+    if (!email || !newPw) { resetError.style.display = 'block'; return; }
+
+    const users = JSON.parse(localStorage.getItem('pnp-users') || '[]');
+    const userIndex = users.findIndex(function(u) { return u.email === email; });
+
+    if (userIndex === -1) {
+      resetError.style.display = 'block';
+      return;
+    }
+
+    users[userIndex].password = newPw;
+    localStorage.setItem('pnp-users', JSON.stringify(users));
+    resetError.style.display = 'none';
+    resetSuccess.style.display = 'block';
+    setTimeout(function() {
+      forgotModal.style.display = 'none';
+      document.getElementById('reset-email').value = '';
+      document.getElementById('reset-new-pw').value = '';
+      resetSuccess.style.display = 'none';
+    }, 2000);
+  });
+}
