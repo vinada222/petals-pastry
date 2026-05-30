@@ -586,7 +586,7 @@ if (loginBtn && document.getElementById('login-email') && !document.getElementBy
 
         if (user) {
             localStorage.setItem('pnp-currentUser', JSON.stringify(user));
-            window.location.href = 'main_page.html';
+            window.location.href = 'index.html';
         } else {
             document.getElementById('login-error').style.display = 'block';
         }
@@ -721,30 +721,56 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== MOBILE HAMBURGER MENU =====
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+  // hamburger
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const drawer = document.getElementById('mobile-drawer');
   const overlay = document.getElementById('mobile-drawer-overlay');
-  const closeBtn = document.getElementById('drawer-close-btn');
+  const drawerCloseBtn = document.getElementById('drawer-close-btn');
 
-  function openDrawer() {
-    drawer.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeDrawer() {
-    drawer.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function openDrawer() { if (drawer) drawer.classList.add('open'); if (overlay) overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { if (drawer) drawer.classList.remove('open'); if (overlay) overlay.classList.remove('open'); document.body.style.overflow = ''; }
 
   if (hamburgerBtn) hamburgerBtn.addEventListener('click', openDrawer);
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
   if (overlay) overlay.addEventListener('click', closeDrawer);
+  document.querySelectorAll('#drawer-links a').forEach(function(link) { link.addEventListener('click', closeDrawer); });
 
-  document.querySelectorAll('#drawer-links a').forEach(function (link) {
-    link.addEventListener('click', closeDrawer);
-  });
+  // mobile search
+  const mobileSearchBtn = document.getElementById('mobile-search-btn');
+  const mobileSearchBar = document.getElementById('mobile-search-bar');
+  const mobileSearchInput = document.getElementById('mobile-search-input');
+  const mobileSearchClose = document.getElementById('mobile-search-close');
+  const mobileResults = document.getElementById('mobile-search-results');
+
+  if (mobileSearchBtn) {
+    mobileSearchBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (mobileSearchBar) { mobileSearchBar.classList.add('open'); }
+      if (mobileSearchInput) mobileSearchInput.focus();
+    });
+  }
+
+  if (mobileSearchClose) {
+    mobileSearchClose.addEventListener('click', function() {
+      if (mobileSearchBar) mobileSearchBar.classList.remove('open');
+      if (mobileSearchInput) mobileSearchInput.value = '';
+      if (mobileResults) { mobileResults.classList.remove('open'); mobileResults.innerHTML = ''; }
+    });
+  }
+
+  if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', function() {
+      const query = mobileSearchInput.value.trim().toLowerCase();
+      if (!mobileResults) return;
+      if (query === '') { mobileResults.classList.remove('open'); mobileResults.innerHTML = ''; return; }
+      const filtered = searchProducts.filter(function(p) { return p.name.toLowerCase().includes(query) || p.category.includes(query); });
+      mobileResults.innerHTML = filtered.length === 0
+        ? '<p class="no-results">No results found.</p>'
+        : filtered.map(function(p) {
+            return `<a href="${p.href}" class="search-result-item"><img src="${p.img}" alt="${p.name}"><div class="result-info"><span class="result-name">${p.name}</span><span class="result-price">${p.price}</span></div></a>`;
+          }).join('');
+      mobileResults.classList.add('open');
+    });
+  }
 });
-

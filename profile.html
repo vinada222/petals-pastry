@@ -16,32 +16,69 @@
     <link rel="icon" type="image/png" href="pastel logo.png">
 </head>
 <body>
-    
-    <nav id="navbar">
-    <div id="nav-logo">
-        <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
-    </div>
 
-    <ul id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html">Menu</a></li>
-        <li><a href="index.html#about-us">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<nav id="navbar">
 
-    <div id="nav-icons">
-        <div id="search-inline">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="SEARCH..." id="search-input" autocomplete="off">
-            <button id="close-search">✕</button>
-        </div>
-        <a href="#" id="search-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
-        <a href="#"><i class="fa-solid fa-user"></i></a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+  <!-- MOBILE NAVBAR (phone only) -->
+  <div id="mobile-navbar">
+    <button id="hamburger-btn" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div id="mobile-logo">
+      <img src="applogo.png" alt="Petals n Pastry" id="mobile-logo-img">
     </div>
+    <div id="mobile-icons">
+      <a href="#" id="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+    </div>
+  </div>
+
+  <!-- DESKTOP NAVBAR -->
+  <div id="nav-logo">
+    <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
+  </div>
+
+  <ul id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#menu-products">Menu</a></li>
+    <li><a href="index.html#about-us">About Us</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+
+  <div id="nav-icons">
+    <div id="search-inline">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="SEARCH..." id="search-input" autocomplete="off">
+      <button id="close-search">✕</button>
+    </div>
+    <a href="#" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    <div id="search-results"></div>
+  </div>
 </nav>
+
+<!--mobile search feature-->
+<div id="mobile-search-bar">
+  <input type="text" id="mobile-search-input" placeholder="SEARCH..." autocomplete="off">
+  <button id="mobile-search-close">✕</button>
+</div>
+<div id="mobile-search-results"></div>
+
+<!-- DRAWER — outside nav -->
+<div id="mobile-drawer-overlay"></div>
+<div id="mobile-drawer">
+  <button id="drawer-close-btn" aria-label="Close menu">✕</button>
+  <ul id="drawer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#menu-products">Menu</a></li>
+    <li><a href="index.html#about-us">About Us</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div>
 
     <!--Profile & History Info-->
 <div id="profile-info">
