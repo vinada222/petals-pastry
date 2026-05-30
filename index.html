@@ -20,16 +20,51 @@
 <body>
 
     <nav id="navbar">
+        <!-- MOBILE NAVBAR (phone only) -->
+<div id="mobile-navbar">
+  <button id="hamburger-btn" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div id="nav-logo">
+    <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry">
+  </div>
+
+  <div id="mobile-logo">
+  <img src="applogo.png" alt="Petals n Pastry" id="mobile-logo-img">
+</div>
+
+  <div id="mobile-icons">
+    <a href="#" id="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+  </div>
+</div>
+
+<!-- MOBILE DRAWER MENU -->
+<div id="mobile-drawer-overlay"></div>
+<div id="mobile-drawer">
+  <button id="drawer-close-btn" aria-label="Close menu">✕</button>
+  <ul id="drawer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#menu-products">Menu</a></li>
+    <li><a href="#about-us">About Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
     <div id="nav-logo">
         <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
     </div>
 
     <ul id="nav-links">
-        <li><a href="main_page.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="#menu-products">Menu</a></li>
         <li><a href="#about-us">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
+
 <!--search feature-->
     <div id="nav-icons">
         <div id="search-inline">
@@ -248,7 +283,5 @@
         <h6>© 2026 Petals & Pastry. All rights reserved.</h6>
     </footer>
 </div>
-
-<script src="main.js"></script>
 </body>
 </html>

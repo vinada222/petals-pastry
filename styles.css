@@ -1788,3 +1788,200 @@ body {
     text-align: center;
     padding: 16px 0;
 }
+
+/* ======================================= */
+/* PHONE ONLY — all mobile styles (≤480px) */
+/* ======================================= */
+
+/* Always hide mobile navbar on desktop/tablet */
+#mobile-navbar {
+  display: none;
+}
+
+/* Always hide drawer on desktop/tablet */
+#mobile-drawer-overlay {
+  display: none;
+}
+
+#mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100vh;
+  background-color: #FFF0F0;
+  z-index: 1999;
+  padding: 60px 30px 40px;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+}
+
+#mobile-drawer.open {
+  left: 0;
+}
+
+@media (max-width: 480px) {
+
+  /* --- NAVBAR --- */
+  #navbar {
+    height: 70px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hide ALL desktop nav elements */
+  #nav-logo,
+  #nav-links,
+  #nav-icons {
+    display: none !important;
+  }
+
+  /* Show mobile navbar */
+  #mobile-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  /* --- HAMBURGER BUTTON --- */
+  #hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px;
+  }
+
+  #hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #c97a8a;
+    border-radius: 2px;
+  }
+
+  #mobile-logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  #mobile-icons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  #mobile-icons a {
+    color: #c97a8a;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  /* --- DRAWER OVERLAY --- */
+  #mobile-drawer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1998;
+  }
+
+  #mobile-drawer-overlay.open {
+    display: block;
+  }
+
+  /* --- DRAWER CLOSE BUTTON --- */
+  #drawer-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #c97a8a;
+    cursor: pointer;
+  }
+
+  /* --- DRAWER LINKS --- */
+  #drawer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  #drawer-links a {
+    text-decoration: none;
+    color: #E8989A;
+    font-family: 'Lexend', sans-serif;
+    font-size: 18px;
+    transition: color 0.2s ease;
+  }
+
+  #drawer-links a:hover {
+    color: #cf4b4e;
+  }
+
+  /* --- HERO SECTION --- */
+#hero {
+  height: 500px;
+  position: relative;
+}
+
+#hero img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+#hero-card {
+  position: absolute;
+  top: 50%;
+  right: 30%;
+  transform: translateY(-50% -50%);  
+  max-width: 75%;   
+  margin: 0;       
+  border-radius: 16px;
+}
+
+  /* --- PRODUCT GRID --- */
+  .pastry-row,
+  .flower-row {
+    gap: 12px;
+    padding: 10px 16px 24px;
+  }
+
+  .pastry-row a {
+    width: calc(50% - 6px);
+  }
+
+  .flower-row a {
+    flex: 0 0 calc(50% - 6px);
+    min-width: unset;
+  }
+
+  .pastry-row img,
+  .flower-row img {
+    height: 120px !important;
+  }
+  /* --- SUB-FOOTER --- */
+  #sub-footer {
+    flex-direction: column;
+    padding: 30px 24px;
+    gap: 24px;
+  }
+
+  /* --- FOOTER --- */
+  #footer h6 {
+    font-size: 11px;
+    text-align: center;
+  }
