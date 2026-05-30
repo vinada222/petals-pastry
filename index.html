@@ -6,44 +6,59 @@
     <title>Petals n Pastry</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <script src="main.js" defer></script>
-    
-    <!--ICON :DD-->
     <link rel="icon" type="image/png" href="pastel logo.png">
-    <title>Petals n Pastry </title>
-
 </head>
 <body>
 
-    <nav id="navbar">
-        <!-- MOBILE NAVBAR (phone only) -->
-<div id="mobile-navbar">
-  <button id="hamburger-btn" aria-label="Open menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+<nav id="navbar">
 
+  <!-- MOBILE NAVBAR (phone only) -->
+  <div id="mobile-navbar">
+    <button id="hamburger-btn" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div id="mobile-logo">
+      <img src="applogo.png" alt="Petals n Pastry" id="mobile-logo-img">
+    </div>
+    <div id="mobile-icons">
+      <a href="#" id="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+    </div>
+  </div>
+
+  <!-- DESKTOP NAVBAR -->
   <div id="nav-logo">
-    <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry">
+    <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
   </div>
 
-  <div id="mobile-logo">
-  <img src="applogo.png" alt="Petals n Pastry" id="mobile-logo-img">
-</div>
+  <ul id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#menu-products">Menu</a></li>
+    <li><a href="#about-us">About Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-  <div id="mobile-icons">
-    <a href="#" id="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
-    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+  <div id="nav-icons">
+    <div id="search-inline">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="SEARCH..." id="search-input" autocomplete="off">
+      <button id="close-search">✕</button>
+    </div>
+    <a href="#" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
     <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    <div id="search-results"></div>
   </div>
-</div>
+</nav>
 
-<!-- MOBILE DRAWER MENU -->
+<!-- DRAWER — outside nav -->
 <div id="mobile-drawer-overlay"></div>
 <div id="mobile-drawer">
   <button id="drawer-close-btn" aria-label="Close menu">✕</button>
@@ -54,33 +69,6 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </div>
-    <div id="nav-logo">
-        <img src="images/PETALS N PATRY LOGO.png" alt="Petals n Pastry Logo">
-    </div>
-
-    <ul id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#menu-products">Menu</a></li>
-        <li><a href="#about-us">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-
-<!--search feature-->
-    <div id="nav-icons">
-        <div id="search-inline">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="SEARCH..." id="search-input" autocomplete="off">
-            <button id="close-search">✕</button>
-        </div>
-        <a href="#" id="search-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
-        <a href="profile.html"><i class="fa-solid fa-user"></i></a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-
-        <div id="search-results"></div>
-    </div>
-</nav>
 
     <!--HOME PAGE-->
     <span id="home"></span>
@@ -98,190 +86,179 @@
     <!--MENU OF PRODUCTS-->
     <div id="menu-products">
         <h2 class="lexend-font">Our Pastries</h2>
-       <div class="pastry-row">
-    <a href="selection.html?id=biscoff">
-        <div class="pastry-card">
-            <div class="biscoff-img"><img src="images/biscoff.png" alt="Crunchy Biscoff Cookie"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">Crunchy Biscoff Cookie</div>
-            </div>
+        <div class="pastry-row">
+            <a href="selection.html?id=biscoff">
+                <div class="pastry-card">
+                    <div class="biscoff-img"><img src="images/biscoff.png" alt="Crunchy Biscoff Cookie"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">Crunchy Biscoff Cookie</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=matcha">
+                <div class="pastry-card">
+                    <div class="matcha-img"><img src="images/matcha.png" alt="Matcha Cookie with White Chocolate"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">Matcha Cookie with White Chocolate</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=chips">
+                <div class="pastry-card">
+                    <div class="chips-img"><img src="images/chips.png" alt="Chocolate Chip Cookie"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">Chocolate Chip Cookie</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=smores">
+                <div class="pastry-card">
+                    <div class="Smores-img"><img src="images/smores.png" alt="S'mores Cookie"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">S'mores Cookie</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=chips">
+                <div class="pastry-card">
+                    <div class="chips-img"><img src="images/chips.png" alt="Chocolate Chip Cookie"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">Chocolate Chip Cookie</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=smores">
+                <div class="pastry-card">
+                    <div class="Smores-img"><img src="images/smores.png" alt="S'mores Cookie"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">S'mores Cookie</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=redvelvet">
+                <div class="pastry-card">
+                    <div class="RedVelvet-img"><img src="images/RedVelvet.png" alt="Red Velvet Cookie"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">Red Velvet Cookie</div>
+                    </div>
+                </div>
+            </a>
+            <a href="selection.html?id=matcha">
+                <div class="pastry-card">
+                    <div class="matcha-img"><img src="images/matcha.png" alt="Matcha Cookie with White Chocolate"></div>
+                    <div class="product-info">
+                        <div class="product-price">₱160.00</div>
+                        <div class="product-name">Matcha Cookie with White Chocolate</div>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
 
-    <a href="selection.html?id=matcha">
-        <div class="pastry-card">
-            <div class="matcha-img"><img src="images/matcha.png" alt="Matcha Cookie with White Chocolate"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">Matcha Cookie with White Chocolate</div>
-            </div>
-        </div>
-    </a>
-
-    <a href="selection.html?id=chips">
-        <div class="pastry-card">
-            <div class="chips-img"><img src="images/chips.png" alt="Chocolate Chip Cookie"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">Chocolate Chip Cookie</div>
-            </div>
-        </div>
-    </a>
-
-    <a href="selection.html?id=smores">
-        <div class="pastry-card">
-            <div class="Smores-img"><img src="images/smores.png" alt="S'mores Cookie"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">S'mores Cookie</div>
-            </div>
-        </div>
-    </a>
-
-    <a href="selection.html?id=chips">
-        <div class="pastry-card">
-            <div class="chips-img"><img src="images/chips.png" alt="Chocolate Chip Cookie"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">Chocolate Chip Cookie</div>
-            </div>
-        </div>
-    </a>
-
-    <a href="selection.html?id=smores">
-        <div class="pastry-card">
-            <div class="Smores-img"><img src="images/smores.png" alt="S'mores Cookie"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">S'mores Cookie</div>
-            </div>
-        </div>
-    </a>
-
-    <a href="selection.html?id=redvelvet">
-        <div class="pastry-card">
-            <div class="RedVelvet-img"><img src="images/RedVelvet.png" alt="Red Velvet Cookie"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">Red Velvet Cookie</div>
-            </div>
-        </div>
-    </a>
-
-    <a href="selection.html?id=matcha">
-        <div class="pastry-card">
-            <div class="matcha-img"><img src="images/matcha.png" alt="Matcha Cookie with White Chocolate"></div>
-            <div class="product-info">
-                <div class="product-price">₱160.00</div>
-                <div class="product-name">Matcha Cookie with White Chocolate</div>
-            </div>
-        </div>
-    </a>
-</div>
-
-        <h2 class="lexend-font">Our Flowers</h2><div class="flower-list">
+        <h2 class="lexend-font">Our Flowers</h2>
+        <div class="flower-list">
             <div class="flower-row">
-
-            <!--row1-->
-            <a href="selection.html?id=roses">
-                <div class="flower-card">
-                    <div class="Roses-img"><img src="images/roses.png" alt="Roses"></div>
-                    <div class="product-info">
-                        <div class="product-price">₱50.00</div>
-                        <div class="product-name">Roses </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="selection.html?id=sunflowers">
-                <div class="flower-card">
-                    <div class="Sunflowers-img"><img src="images/sunflowers.png" alt="Sunflowers"></div>
-                    <div class="product-info">
-                        <div class="product-price">₱100.00</div>
-                        <div class="product-name">Sunflowers</div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="selection.html?id=tulips">
-                <div class="flower-card">
-                    <div class="Tulips-img"><img src="images/tulips.png" alt="Tulips"></div>
-                    <div class="product-info">
-                        <div class="product-price">₱70.00</div>
-                        <div class="product-name">Tulips
+                <a href="selection.html?id=roses">
+                    <div class="flower-card">
+                        <div class="Roses-img"><img src="images/roses.png" alt="Roses"></div>
+                        <div class="product-info">
+                            <div class="product-price">₱50.00</div>
+                            <div class="product-name">Roses</div>
                         </div>
                     </div>
-                </div>
-            </a>
-
-            <a href="selection.html?id=orchids">
-                <div class="flower-card">
-                    <div class="Orchids-img"><img src="images/orchids.png" alt="Orchids"></div>
-                    <div class="product-info">
-                        <div class="product-price">₱180.00</div>
-                        <div class="product-name">Orchids</div>
+                </a>
+                <a href="selection.html?id=sunflowers">
+                    <div class="flower-card">
+                        <div class="Sunflowers-img"><img src="images/sunflowers.png" alt="Sunflowers"></div>
+                        <div class="product-info">
+                            <div class="product-price">₱100.00</div>
+                            <div class="product-name">Sunflowers</div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                <a href="selection.html?id=tulips">
+                    <div class="flower-card">
+                        <div class="Tulips-img"><img src="images/tulips.png" alt="Tulips"></div>
+                        <div class="product-info">
+                            <div class="product-price">₱70.00</div>
+                            <div class="product-name">Tulips</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="selection.html?id=orchids">
+                    <div class="flower-card">
+                        <div class="Orchids-img"><img src="images/orchids.png" alt="Orchids"></div>
+                        <div class="product-info">
+                            <div class="product-price">₱180.00</div>
+                            <div class="product-name">Orchids</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-</div>   
 
     <!--ABOUT US-->
     <div id="about-us-section">
-    <div id="about-us">
-        <h3>founder of Petals n Pastry</h3>
-        <h5>Hi I'm Davina, Welcome</h5>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <div id="social-icons">
-            <a href="javascript:void(0)" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/petalsnpastry_ceb" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="javascript:void(0)" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <div id="about-us">
+            <h3>founder of Petals n Pastry</h3>
+            <h5>Hi I'm Davina, Welcome</h5>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div id="social-icons">
+                <a href="javascript:void(0)" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/petalsnpastry_ceb" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="javascript:void(0)" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
         </div>
+        <div id="about-us-right"></div>
     </div>
-    <div id="about-us-right"></div>
-</div>
 
     <!--Forms/Footer Portion-->
     <div id="sub-footer">
-    <div id="categories">
-        <h2 class="lexend-font">Categories</h2>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-
-    <span id="contact"></span>
-    <div id="contact-info">
-        <ul>
-        <h2 class="lexend-font">Contact</h2>
-        <li>Address: Cebu City, Philippines</li>
-        <li>Telephone: +63 111 143 6767</li>
-        <li>Email: petalsnpastries@cit.edu</li>
-        </ul>
-    </div>
-
-    <div id="contact-form">
-    <h2 class="lexend-font">Contact Form</h2>
-    <form class="contact-form">
-        <input type="text" placeholder="Name" required>
-        <input type="tel" placeholder="Phone no." required>
-        <div class="textarea-container">
-            <textarea placeholder="Message" rows="5"></textarea>
+        <div id="categories">
+            <h2 class="lexend-font">Categories</h2>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-        <button type="submit">Submit</button>
-    </form>
-    <p id="contact-success" style="display:none; color: #ffffff; font-family: 'Lexend', sans-serif; font-size: 0.85rem; margin-top: 8px;">Message sent successfully!</p>
-</div>
-</div>
+        <span id="contact"></span>
+        <div id="contact-info">
+            <ul>
+                <h2 class="lexend-font">Contact</h2>
+                <li>Address: Cebu City, Philippines</li>
+                <li>Telephone: +63 111 143 6767</li>
+                <li>Email: petalsnpastries@cit.edu</li>
+            </ul>
+        </div>
+        <div id="contact-form">
+            <h2 class="lexend-font">Contact Form</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="tel" placeholder="Phone no." required>
+                <div class="textarea-container">
+                    <textarea placeholder="Message" rows="5"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p id="contact-success" style="display:none; color: #ffffff; font-family: 'Lexend', sans-serif; font-size: 0.85rem; margin-top: 8px;">Message sent successfully!</p>
+        </div>
+    </div>
+
     <!--footer-->
     <div id="footer">
         <footer>
-        <h6>© 2026 Petals & Pastry. All rights reserved.</h6>
-    </footer>
-</div>
+            <h6>© 2026 Petals & Pastry. All rights reserved.</h6>
+        </footer>
+    </div>
+
 </body>
 </html>

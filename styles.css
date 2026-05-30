@@ -580,16 +580,19 @@ body {
     border-color: #c97a8a;
 }
 
-/*about us page*/
-#about-us-section {
-    display: flex;
-    width: 100%;
-    scroll-margin-top: 130px;
+#menu-products, 
+#about-us-section, 
+#contact-info,
+#sub-footer {
+    scroll-margin-top: 3px;
+}
+html {
+    scroll-behavior: smooth;
 }
 
 #about-us {
     background-color: #FFF0F0;
-    padding: 60px 40px;
+    padding: 150px 40px;
     width: 50%;
 }
 
@@ -1010,7 +1013,6 @@ body {
     font-weight: 500;
 }
 
-/* Optional: Align "Price" to the right to match the numbers */
 .orders p:last-of-type {
     text-align: right;
 }
@@ -1789,9 +1791,7 @@ body {
     padding: 16px 0;
 }
 
-/* ======================================= */
-/* PHONE ONLY — all mobile styles (≤480px) */
-/* ======================================= */
+/* MOBILE PHONE (480px) */
 
 /* Always hide mobile navbar on desktop/tablet */
 #mobile-navbar {
@@ -1958,7 +1958,14 @@ body {
   .flower-row {
     gap: 12px;
     padding: 10px 16px 24px;
+    align-items: flex-start;
   }
+
+  .product-info {
+  padding: 6px 0;
+  max-width: 49%;
+  width: 100%;
+}
 
   .pastry-row a {
     width: calc(50% - 6px);
@@ -1980,8 +1987,41 @@ body {
     gap: 24px;
   }
 
+    #contact-info h2 {
+    padding-right:auto;
+}
+
   /* --- FOOTER --- */
   #footer h6 {
     font-size: 11px;
     text-align: center;
   }
+
+  /* --- CART PAGE --- */
+#add-details {
+  width: 100%;  
+  margin: 0 0 16px 0; 
+}
+
+#shipping-details {
+  margin-top: 0;
+  padding-right: 1px;
+  text-align: right;
+}
+
+#check-outbtn {
+  padding: 0 20px 20px;
+}
+.s-row {
+  font-size: 10px; 
+  gap: 9px;
+  padding: 10px 16px;
+}
+
+#check-outbtn {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1px;
+}
+}
+/*selection phone panel*/
