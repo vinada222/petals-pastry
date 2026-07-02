@@ -13,6 +13,45 @@ if (currentFavicon) {
 }
 document.title = 'Petals n Pastry';
 
+// smooth scrolling for in-page navbar links
+const navbarOffset = 110;
+
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+
+        const target = document.querySelector(targetId);
+        if (target) {
+            e.preventDefault();
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+    });
+});
+
+document.querySelectorAll('a[href*="index.html"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href) return;
+
+        if (href === 'index.html' || href === './index.html' || href === '/index.html') {
+            e.preventDefault();
+
+            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+                const homeTarget = document.getElementById('home');
+                if (homeTarget) {
+                    const targetPosition = homeTarget.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            } else {
+                window.location.href = 'index.html#home';
+            }
+        }
+    });
+});
 
 // ===== GLOBAL STATE =====
 let currentQty = 1;
