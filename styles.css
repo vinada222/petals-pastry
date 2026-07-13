@@ -1844,6 +1844,7 @@ html {
     justify-content: space-between;
     width: 100%;
     padding: 0 16px;
+    position: relative;
   }
 
   /* --- HAMBURGER BUTTON --- */
@@ -1855,6 +1856,10 @@ html {
     flex-direction: column;
     gap: 5px;
     padding: 6px;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
   }
 
   #hamburger-btn span {
@@ -1863,6 +1868,16 @@ html {
     height: 2px;
     background-color: #c97a8a;
     border-radius: 2px;
+  }
+
+  #mobile-logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
   }
 
   #mobile-logo img {
@@ -1874,6 +1889,10 @@ html {
     display: flex;
     align-items: center;
     gap: 14px;
+    margin-left: auto;
+    flex: 1;
+    justify-content: flex-end;
+    z-index: 1;
   }
 
   #mobile-icons a {
