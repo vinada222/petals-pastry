@@ -2107,7 +2107,7 @@ html {
   }
 
   #mobile-search-bar {
-  display: flex;
+  
   width: 100%;
   background-color: #FFF0F0;
   padding: 8px 16px 12px;
@@ -2155,7 +2155,4 @@ html {
 #mobile-search-results.open {
   display: block;
 }
-
 }
-
-

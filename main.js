@@ -792,8 +792,17 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileSearchBtn) {
     mobileSearchBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      if (mobileSearchBar) { mobileSearchBar.classList.add('open'); }
-      if (mobileSearchInput) mobileSearchInput.focus();
+      const isOpen = mobileSearchBar && mobileSearchBar.classList.contains('open');
+      if (mobileSearchBar) {
+        mobileSearchBar.classList.toggle('open', !isOpen);
+      }
+      if (!isOpen && mobileSearchInput) {
+        mobileSearchInput.focus();
+      }
+      if (!isOpen && mobileResults) {
+        mobileResults.classList.remove('open');
+        mobileResults.innerHTML = '';
+      }
     });
   }
 
