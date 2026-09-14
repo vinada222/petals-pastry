@@ -108,7 +108,7 @@ const productDB = {
     'redvelvet': {
         name: "Red Velvet Cookie (Solo & Box)",
         desc: "A decadent, deep-red cocoa base swirled with creamy white chocolate chips and a hint of tangy sweetness. Velvety smooth and strikingly bold, it’s the ultimate fusion of rich cake flavor and a classic cookie crunch.",
-        images: ["images/redvelvet.png", "images/redvelvet2.png", "images/redvelvet3.png", "images/redvelvet4.png"],
+        images: ["images/RedVelvet.png", "images/redvelvet2.png", "images/redvelvet3.png", "images/redvelvet4.png"],
         variants: [
             { label: "solo (1 pc.)", price: 30 },
             { label: "one mini box (6 pcs.)", price: 160 }
@@ -188,7 +188,19 @@ const searchProducts = [
 
 // ===== CART STORAGE =====
 function getCart() {
-    return JSON.parse(localStorage.getItem('pnp-cart') || '[]');
+    const cart = JSON.parse(localStorage.getItem('pnp-cart') || '[]');
+
+    // Keep older cart entries in sync with the canonical product image path.
+    let wasUpdated = false;
+    cart.forEach(function(item) {
+        if (item.name === productDB.redvelvet.name && item.img !== productDB.redvelvet.images[0]) {
+            item.img = productDB.redvelvet.images[0];
+            wasUpdated = true;
+        }
+    });
+
+    if (wasUpdated) saveCart(cart);
+    return cart;
 }
 
 function saveCart(cart) {
@@ -233,7 +245,11 @@ function setThumb(img) {
 
 function addToCart() {
     const productTitle = document.getElementById('product-title').textContent;
-    const productImg = document.getElementById('main-product-img').src;
+    const productId = new URLSearchParams(window.location.search).get('id');
+    const product = productDB[productId];
+    const productImg = product
+        ? product.images[0]
+        : document.getElementById('main-product-img').getAttribute('src');
     const cart = getCart();
 
     const existing = cart.find(function(item) {
@@ -242,6 +258,7 @@ function addToCart() {
 
     if (existing) {
         existing.qty += currentQty;
+        existing.img = productImg;
     } else {
         cart.push({
             id: Date.now(),
