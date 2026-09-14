@@ -602,15 +602,35 @@ if (logoutBtn) {
 // ===== REGISTER =====
 const registerBtn = document.querySelector('#login #sign-in');
 if (registerBtn && document.getElementById('input-fname')) {
+    const birthdayInput = document.getElementById('input-bday');
+    if (birthdayInput) {
+        birthdayInput.addEventListener('input', function() {
+            const digits = this.value.replace(/\D/g, '').slice(0, 8);
+            const parts = [];
+
+            if (digits.length > 0) parts.push(digits.slice(0, 2));
+            if (digits.length > 2) parts.push(digits.slice(2, 4));
+            if (digits.length > 4) parts.push(digits.slice(4, 8));
+
+            this.value = parts.join('-');
+        });
+    }
+
     registerBtn.addEventListener('click', function() {
         const fname = document.getElementById('input-fname').value;
         const lname = document.getElementById('input-lname').value;
         const email = document.getElementById('login-email').value;
+        const birthday = document.getElementById('input-bday').value;
         const password = document.getElementById('input-pw').value;
         const confirmPw = document.getElementById('input-confirm-pw').value;
+        const shortPasswordMessage = document.getElementById('pw-too-short');
 
         if (!fname || !email || !password) {
             document.getElementById('create-error').style.display = 'block';
+            return;
+        }
+        if (password.length < 12 || confirmPw.length < 12) {
+            if (shortPasswordMessage) shortPasswordMessage.style.display = 'block';
             return;
         }
         if (password !== confirmPw) {
@@ -624,7 +644,7 @@ if (registerBtn && document.getElementById('input-fname')) {
             return;
         }
 
-        users.push({ fname: fname, lname: lname, email: email, password: password, orderHistory: [] });
+        users.push({ fname: fname, lname: lname, email: email, birthday: birthday, password: password, orderHistory: [] });
         localStorage.setItem('pnp-users', JSON.stringify(users));
         document.getElementById('madeAcc-success').style.display = 'block';
         setTimeout(function() { window.location.href = 'login.html'; }, 1500);
@@ -640,6 +660,11 @@ if (loginBtn && document.getElementById('login-email') && !document.getElementBy
         const password = document.getElementById('login-password').value.trim();
 
         if (!email || !password) {
+            document.getElementById('login-error').style.display = 'block';
+            return;
+        }
+        if (password.length < 12) {
+            document.getElementById('login-error').textContent = 'Password must be at least 12 characters';
             document.getElementById('login-error').style.display = 'block';
             return;
         }
