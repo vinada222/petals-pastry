@@ -108,7 +108,7 @@ const productDB = {
     'redvelvet': {
         name: "Red Velvet Cookie (Solo & Box)",
         desc: "A decadent, deep-red cocoa base swirled with creamy white chocolate chips and a hint of tangy sweetness. Velvety smooth and strikingly bold, it’s the ultimate fusion of rich cake flavor and a classic cookie crunch.",
-        images: ["images/redvelvet.png", "images/redvelvet2.png", "images/redvelvet3.png", "images/redvelvet4.png"],
+        images: ["images/RedVelvet.png", "images/redvelvet2.png", "images/redvelvet3.png", "images/redvelvet4.png"],
         variants: [
             { label: "solo (1 pc.)", price: 30 },
             { label: "one mini box (6 pcs.)", price: 160 }
